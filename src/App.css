@@ -1,0 +1,39 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  height: 100vh;
+}
+
+nav {
+  background-color: green;
+  height: 50px;
+  width: 100%;
+  font-size: 18px;
+  /* z-index: 10; */
+  /* position: fixed; */
+  top: 0px;
+}
+
+main {
+  background: purple;
+  display: grid;
+}
+
+.diana-container {
+  /* position: relative; */
+  overflow: hidden;
+  width: 68%;
+  height: 500px;
+  background-color: red;
+  place-self: center;
+}
+
+.diana-btn {
+  background-color: blue;
+  color: black;
+  width: 100px;
+}
