@@ -9,7 +9,7 @@ body {
 }
 
 nav {
-  background-color: green;
+  background-color: rgb(24, 111, 162);
   height: 50px;
   width: 100%;
   font-size: 18px;
@@ -24,16 +24,21 @@ main {
 }
 
 .diana-container {
-  /* position: relative; */
   overflow: hidden;
   width: 68%;
   height: 500px;
-  background-color: red;
+  background-color: white;
   place-self: center;
 }
 
 .diana-btn {
-  background-color: blue;
+  background-color: white;
   color: black;
   width: 100px;
+}
+
+.diana-svg {
+  width: 100px;
+  position: absolute;
+  cursor: pointer;
 }

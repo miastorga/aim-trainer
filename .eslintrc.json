@@ -15,6 +15,7 @@
     "react"
   ],
   "rules": {
+    "react/prop-types": "off",
     "react/react-in-jsx-scope": "off",
     "quotes": [
       "error",
@@ -23,7 +24,6 @@
     "indent": [
       "error",
       2
-    ],
-    "react/prop-types": "off"
+    ]
   }
 }
