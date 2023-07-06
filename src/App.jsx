@@ -1,29 +1,29 @@
 import { useState } from 'react'
-import { Diana } from './Diana'
+import { Diana } from './components/Diana'
 import { useRef } from 'react'
+import { handleDianaMovement } from './dianaUtils'
+import { Terminado } from './components/Terminado'
 import './App.css'
 
 function App() {
   const [buttonPosition, setButtonPosition] = useState({ top: '50%', left: '50%' })
-  const [remaining, setRemaining] = useState(10)
+  const [startGame, setStartGame] = useState(true) // Estado para mostrar datos de inicio
+  const [remaining, setRemaining] = useState(3) // Estado para rastrear los click faltantes
+  const [firstClick, setFirstClick] = useState(true) // Estado para rastrear el primer clic
   const dianaContainerRef = useRef()
 
-  function handleDianaMovement() {
-    setRemaining(remaining => remaining - 1)
-    const containerReact = dianaContainerRef.current.getBoundingClientRect()
-
-    const maxX = containerReact.width - 100 // 100 es el ancho del boton
-    const maxY = containerReact.height - 100 // 100 es el ancho del boton
-
-    const newX = Math.floor(Math.random() * maxX)
-    const newY = Math.floor(Math.random() * maxY)
-
-    const newButtonPosition = {
-      top: newY,
-      left: newX,
+  function handleDianaClick() {
+    if (firstClick) {
+      setFirstClick(false)
+      handleDianaMovement(dianaContainerRef, setButtonPosition)
+    } else {
+      handleDianaMovement(dianaContainerRef, setButtonPosition)
+      setRemaining((prevRemaining) => prevRemaining - 1)
     }
-    setButtonPosition(newButtonPosition)
+    if (startGame) setStartGame(false)
   }
+
+  const isGameFinished = remaining === 0
 
   return (
     <>
@@ -32,18 +32,19 @@ function App() {
       </nav>
       <main>
         <div className="diana-container">
-          <div>
+          {startGame && <h1>Aim trainer</h1>}
+          <div className='header'>
             {
-              remaining === 0 ? <p>se termino</p> : <h2>Remaining: {remaining}</h2>
+              !startGame && !isGameFinished && (<h2>Remaining: {remaining}</h2>)
             }
           </div>
-          <div style={{ width: '100%', position: 'relative', height: '90%' }} ref={dianaContainerRef}>
-            {
-              remaining > 0 && (
-                <Diana handleDianaMovement={handleDianaMovement} buttonPosition={buttonPosition} />
-              )
-            }
+          <div className='main-content' ref={dianaContainerRef}>
+            {remaining > 0 && (
+              <Diana handleDianaClick={handleDianaClick} buttonPosition={buttonPosition} />
+            )}
+            {isGameFinished && <Terminado setStartGame={setStartGame} />}
           </div>
+          {startGame && <p>Hit 30 targets as quickly as you can. Clic the target above to begin</p>}
         </div>
       </main>
     </>
