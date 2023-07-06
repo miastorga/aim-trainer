@@ -23,6 +23,13 @@ function App() {
     if (startGame) setStartGame(false)
   }
 
+  function handleGameRestart() {
+    setStartGame(true)
+    setRemaining(3)
+    setFirstClick(true)
+    setButtonPosition({ top: '50%', left: '50%' })
+  }
+
   const isGameFinished = remaining === 0
 
   return (
@@ -34,17 +41,13 @@ function App() {
         <div className="diana-container">
           {startGame && <h1>Aim trainer</h1>}
           <div className='header'>
-            {
-              !startGame && !isGameFinished && (<h2>Remaining: {remaining}</h2>)
-            }
+            {!startGame && !isGameFinished && <h2>Remaining: {remaining}</h2>}
           </div>
           <div className='main-content' ref={dianaContainerRef}>
-            {remaining > 0 && (
-              <Diana handleDianaClick={handleDianaClick} buttonPosition={buttonPosition} />
-            )}
-            {isGameFinished && <Terminado setStartGame={setStartGame} />}
+            {remaining > 0 && <Diana handleDianaClick={handleDianaClick} buttonPosition={buttonPosition} />}
+            {isGameFinished && <Terminado onGameRestart={handleGameRestart} />}
           </div>
-          {startGame && <p>Hit 30 targets as quickly as you can. Clic the target above to begin</p>}
+          {startGame && <p>Hit 30 targets as quickly as you can. Click the target above to begin</p>}
         </div>
       </main>
     </>

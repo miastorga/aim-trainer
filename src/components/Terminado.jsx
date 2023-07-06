@@ -1,5 +1,5 @@
 /* eslint-disable react/prop-types */
-export const Terminado = ({ setStartGame }) => {
+export const Terminado = ({ onGameRestart }) => {
   return (
     <div>
       <div>
@@ -7,7 +7,7 @@ export const Terminado = ({ setStartGame }) => {
         <p>500ms</p>
       </div>
       <div>
-        <button onClick={() => setStartGame(true)}>Try again</button>
+        <button onClick={() => onGameRestart()}>Try again</button>
       </div>
     </div>
   )
