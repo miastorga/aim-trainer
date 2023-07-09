@@ -1,8 +1,9 @@
 :root {
-  --primary-bg: #31004A;
-  --secundary-bg: #4C00A4;
-  --tertiary-bg: #AB00FF;
-  --text-white: #ffffff;
+  --morado-oscuro-main: #800080;
+  --violeta-main: #8A2BE2;
+  --violeta-secondary: #bf89f3;
+  --lavanda: #E6E6FA;
+  --morado-claro: #D8BFD8;
 }
 
 * {
@@ -20,27 +21,53 @@ h1,
 h2,
 p,
 span {
-  color: var(--text-white);
+  color: var(--lavanda);
 }
 
 nav {
-  background-color: var(--secundary-bg);
+  background-color: var(--lavanda);
   height: 60px;
   width: 100%;
   font-size: 18px;
   top: 0px;
+  display: flex;
+  justify-content: left;
+  align-items: center;
+  padding: 0rem 2rem;
+}
+
+nav h1 {
+  color: black;
 }
 
 main {
-  background: var(--tertiary-bg);
+  background: var(--violeta-main);
   display: grid;
 }
 
-.diana-container {
+@media (max-width: 700px) {
+  main {
+    background-color: red;
+  }
+
+  .main-content {
+    visibility: hidden;
+  }
+
+  .show-on-mobile {
+    display: grid;
+    /* background-color: red; */
+  }
+}
+
+.show-on-mobile {
+  display: none;
+}
+
+.main-content {
   overflow: hidden;
   width: 68%;
   height: 540px;
-  background-color: var(--tertiary-bg);
   place-self: center;
   display: flex;
   align-items: center;
@@ -49,7 +76,7 @@ main {
 }
 
 .diana-btn {
-  background-color: white;
+  background-color: var(--lavanda);
   color: black;
   width: 100px;
 }
@@ -69,9 +96,10 @@ main {
   margin-bottom: 20px;
 }
 
-.main-content {
+.diana-container {
   display: flex;
   justify-content: center;
+  /* align-items: center; */
   width: 100%;
   position: relative;
   height: 90%;
@@ -81,21 +109,39 @@ main {
   font-size: 2.5rem;
 }
 
+.footer {
+  margin-bottom: 40px;
+  text-align: center;
+}
+
 .footer p {
   font-size: 20px;
-  margin-bottom: 40px;
 }
 
 .btn {
   padding: 15px 25px;
   border-radius: 5px;
   border: none;
-  color: var(--text-white);
-  background-color: var(--secundary-bg);
-  font-weight: bold;
+  background-color: var(--violeta-secondary);
+  color: black;
+  font-weight: bolder;
 }
 
 .btn:hover {
   cursor: pointer;
-  background-color: var(--primary-bg);
+  background-color: var(--lavanda);
+}
+
+.terminado-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.diana-terminado {
+  width: 85px;
+  user-select: none;
+  border-radius: 50%;
+  margin: 1rem 1rem;
 }

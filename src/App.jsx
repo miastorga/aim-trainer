@@ -5,7 +5,6 @@ import { handleDianaMovement } from './dianaUtils'
 import { Terminado } from './components/Terminado'
 import './App.css'
 
-
 const GameState = {
   notStarted: 'notStarted',
   inProgress: 'inProgress',
@@ -13,16 +12,25 @@ const GameState = {
 }
 
 function App() {
-  const TOTAL_REMAINING = 3
+  const TOTAL_REMAINING = 2
+  const dianaContainerRef = useRef()
   const [buttonPosition, setButtonPosition] = useState({ top: '50%', left: '50%' })
   const [remaining, setRemaining] = useState(TOTAL_REMAINING) // Estado para rastrear los click faltantes
   const [gameState, setGameState] = useState(GameState.notStarted) // Estado para mostrar las etapas del juego (pantalla de inicio, juego, pantalla final)
   const [isFirstClick, setIsFirstClick] = useState(true) // Estado para rastrear el primer click
-  const dianaContainerRef = useRef()
   const [startTime, setStartTime] = useState(0)
   const [clickTimes, setClickTimes] = useState([])
   const [averageTime, setAverageTime] = useState(0)
 
+  useEffect(() => {
+    if (clickTimes.length > 1) {
+      const sum = clickTimes.reduce((a, b) => a + b, 0)
+      const average = sum / clickTimes.length
+      setAverageTime(average.toFixed(2))
+    } else {
+      setAverageTime(0)
+    }
+  }, [clickTimes])
 
   function handleAverageClick() {
     const currentTime = new Date().getTime()
@@ -45,16 +53,6 @@ function App() {
     if (remaining === 1) setGameState(GameState.finished)
   }
 
-  useEffect(() => {
-    if (clickTimes.length > 1) {
-      const sum = clickTimes.reduce((a, b) => a + b, 0)
-      const average = sum / clickTimes.length
-      setAverageTime(average.toFixed(2))
-    } else {
-      setAverageTime(0)
-    }
-  }, [clickTimes])
-
   function handleGameRestart() {
     setGameState(GameState.notStarted)
     setRemaining(TOTAL_REMAINING)
@@ -74,20 +72,28 @@ function App() {
         <h1>Human Benchmark</h1>
       </nav>
       <main>
-        <div className="diana-container">
+        <div className="main-content">
           <div className='title'>
             {gameState === GameState.notStarted && <h1>Aim Trainer</h1>}
           </div>
           <div className='header'>
             {showRemaining && <h2>Remaining: {remaining}</h2>}
           </div>
-          <div className='main-content' ref={dianaContainerRef}>
+          <div className='diana-container' ref={dianaContainerRef}>
             {remaining > 0 && <Diana handleDianaClick={handleDianaClick} buttonPosition={buttonPosition} handleAverageClick={handleAverageClick} />}
             {gameState === GameState.finished && <Terminado onGameRestart={handleGameRestart} averageTime={averageTime} />}
           </div>
           <div className='footer'>
-            {gameState === GameState.notStarted && <p>Hit 30 targets as quickly as you can. Click the target above to begin</p>}
+            {gameState === GameState.notStarted && (
+              <>
+                <p>Hit 30 targets as quickly as you can</p>
+                <p>Click the target above to begin</p>
+              </>
+            )}
           </div>
+        </div>
+        <div className='show-on-mobile'>
+          <h1>This test is intended to be taken on a desktop or laptop. (Or make your browser window larger)</h1>
         </div>
       </main>
     </>
