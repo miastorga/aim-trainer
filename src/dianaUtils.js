@@ -1,4 +1,4 @@
-// Funcion encargada de mover de forma aleatoria la diana al hacerle click
+// Funcion encargada de mover de forma aleatoria la diana
 export function handleDianaMovement(dianaContainerRef, setButtonPosition) {
   const containerRect = dianaContainerRef.current.getBoundingClientRect()
 

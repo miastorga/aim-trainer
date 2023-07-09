@@ -1,33 +1,46 @@
+:root {
+  --primary-bg: #31004A;
+  --secundary-bg: #4C00A4;
+  --tertiary-bg: #AB00FF;
+  --text-white: #ffffff;
+}
+
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  font-family: 'Maven Pro', sans-serif;
 }
 
 body {
   height: 100vh;
 }
 
+h1,
+h2,
+p,
+span {
+  color: var(--text-white);
+}
+
 nav {
-  background-color: rgb(24, 111, 162);
-  height: 50px;
+  background-color: var(--secundary-bg);
+  height: 60px;
   width: 100%;
   font-size: 18px;
-  /* z-index: 10; */
-  /* position: fixed; */
   top: 0px;
 }
 
 main {
-  background: purple;
+  background: var(--tertiary-bg);
   display: grid;
 }
 
 .diana-container {
   overflow: hidden;
   width: 68%;
-  height: 500px;
-  background-color: white;
+  height: 540px;
+  background-color: var(--tertiary-bg);
   place-self: center;
   display: flex;
   align-items: center;
@@ -62,4 +75,27 @@ main {
   width: 100%;
   position: relative;
   height: 90%;
+}
+
+.title {
+  font-size: 2.5rem;
+}
+
+.footer p {
+  font-size: 20px;
+  margin-bottom: 40px;
+}
+
+.btn {
+  padding: 15px 25px;
+  border-radius: 5px;
+  border: none;
+  color: var(--text-white);
+  background-color: var(--secundary-bg);
+  font-weight: bold;
+}
+
+.btn:hover {
+  cursor: pointer;
+  background-color: var(--primary-bg);
 }
