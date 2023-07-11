@@ -27,8 +27,6 @@ function App() {
       const sum = clickTimes.reduce((a, b) => a + b, 0)
       const average = sum / clickTimes.length
       setAverageTime(average.toFixed(2))
-    } else {
-      setAverageTime(0)
     }
   }, [clickTimes])
 
