@@ -1,12 +1,13 @@
 /* eslint-disable react/prop-types */
 import target from '../assets/target.svg'
 import '../App.css'
-export const Diana = ({ handleDianaClick, buttonPosition, handleAverageClick, }) => {
+export const Diana = ({ handleDianaClick, buttonPosition, handleAverageClick }) => {
 
   return (
-    <img src={target} alt="diana" className='diana-svg' style={{
+    <img src={target} alt="diana" className='diana-svg ' style={{
       top: `${buttonPosition.top}px`,
       left: `${buttonPosition.left}px`,
+      // transform: `translate(${buttonPosition.left}px, ${buttonPosition.top}px)`
     }} onClick={() => {
       handleDianaClick()
       handleAverageClick()
