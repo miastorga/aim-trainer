@@ -3,21 +3,25 @@ import { Diana } from './components/Diana'
 import { useRef, useEffect } from 'react'
 import { handleDianaMovement } from './dianaUtils'
 import { Terminado } from './components/Terminado'
+import { Footer } from './components/Footer'
+import { Volumen } from './components/Volumen'
+import { VolumenMuted } from './components/VolumenMuted'
 import './App.css'
 
-const GameState = {
+export const GameState = {
   notStarted: 'notStarted',
   inProgress: 'inProgress',
   finished: 'finished'
 }
 
 function App() {
-  const TOTAL_REMAINING = 2
+  const TOTAL_REMAINING = 20
   const dianaContainerRef = useRef()
   const [buttonPosition, setButtonPosition] = useState({ top: '50%', left: '50%' })
   const [remaining, setRemaining] = useState(TOTAL_REMAINING) // Estado para rastrear los click faltantes
-  const [gameState, setGameState] = useState(GameState.notStarted) // Estado para mostrar las etapas del juego (pantalla de inicio, juego, pantalla final)
+  const [gameState, setGameState] = useState(GameState.notStarted) // Estado para mostrar las etapas del juego
   const [isFirstClick, setIsFirstClick] = useState(true) // Estado para rastrear el primer click
+  const [isMuted, setIsMuted] = useState(false)
   const [startTime, setStartTime] = useState(0)
   const [clickTimes, setClickTimes] = useState([])
   const [averageTime, setAverageTime] = useState(0)
@@ -61,6 +65,7 @@ function App() {
     setClickTimes([])
   }
 
+
   const isGameFinished = remaining === 0
   const showRemaining = gameState === GameState.inProgress && !isGameFinished
 
@@ -78,20 +83,20 @@ function App() {
             {showRemaining && <h2>Remaining: {remaining}</h2>}
           </div>
           <div className='diana-container' ref={dianaContainerRef}>
-            {remaining > 0 && <Diana handleDianaClick={handleDianaClick} buttonPosition={buttonPosition} handleAverageClick={handleAverageClick} />}
+            {remaining > 0 && <Diana handleDianaClick={handleDianaClick} buttonPosition={buttonPosition} handleAverageClick={handleAverageClick} isMuted={isMuted} />}
             {gameState === GameState.finished && <Terminado onGameRestart={handleGameRestart} averageTime={averageTime} />}
           </div>
-          <div className='footer'>
-            {gameState === GameState.notStarted && (
-              <>
-                <p>Hit 30 targets as quickly as you can</p>
-                <p>Click the target above to begin</p>
-              </>
-            )}
-          </div>
+          <Footer gameState={gameState} />
         </div>
         <div className='show-on-mobile'>
           <h1>This test is intended to be taken on a desktop or laptop. (Or make your browser window larger)</h1>
+        </div>
+        <div>
+          <div onClick={() => setIsMuted(!isMuted)}>
+            {
+              isMuted ? <VolumenMuted /> : <Volumen />
+            }
+          </div>
         </div>
       </main>
     </>

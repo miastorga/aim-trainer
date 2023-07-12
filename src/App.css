@@ -72,9 +72,26 @@ nav h1 {
 main {
   background: var(--violeta-main);
   display: grid;
+  position: relative;
 }
 
+.volumen {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 40px;
+  margin: 1.5rem 5rem;
+  cursor: pointer;
+}
 
+.volumen-muted {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 40px;
+  margin: 1.5rem 5rem;
+  cursor: pointer;
+}
 
 .show-on-mobile {
   display: none;
@@ -175,6 +192,14 @@ main {
     width: 0;
   }
 
+  .volumen {
+    visibility: hidden;
+  }
+
+  .volumen-muted {
+    visibility: hidden;
+  }
+
   .show-on-mobile {
     display: block;
     background-color: var(--morado-claro);
@@ -190,5 +215,15 @@ main {
     color: black;
     font-size: 18px;
     line-height: 1.5;
+  }
+}
+
+@media(max-width:1000px) {
+  .volumen {
+    margin-left: 1rem;
+  }
+
+  .volumen-muted {
+    margin-left: 1rem;
   }
 }
