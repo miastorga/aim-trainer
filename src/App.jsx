@@ -6,7 +6,9 @@ import { Terminado } from './components/Terminado'
 import { Footer } from './components/Footer'
 import { Volumen } from './components/Volumen'
 import { VolumenMuted } from './components/VolumenMuted'
+import { AuthContextProvider } from './context/AuthContext'
 import './App.css'
+import { Login } from './components/Login'
 
 export const GameState = {
   notStarted: 'notStarted',
@@ -70,11 +72,12 @@ function App() {
   const showRemaining = gameState === GameState.inProgress && !isGameFinished
 
   return (
-    <>
+    <AuthContextProvider>
       <nav>
         <h1>Human Benchmark</h1>
       </nav>
       <main>
+        <Login />
         <div className="main-content">
           <div className='title'>
             {gameState === GameState.notStarted && <h1>Aim Trainer</h1>}
@@ -99,7 +102,7 @@ function App() {
           </div>
         </div>
       </main>
-    </>
+    </AuthContextProvider>
   )
 }
 
