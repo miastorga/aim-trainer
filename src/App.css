@@ -142,6 +142,10 @@ main {
   font-size: 2.5rem;
 }
 
+.title h1 {
+  text-shadow: 0px 0px 24px #5C5696;
+}
+
 .footer {
   margin-bottom: 40px;
   text-align: center;
@@ -177,6 +181,90 @@ main {
   user-select: none;
   border-radius: 50%;
   margin: 1rem 1rem;
+}
+
+nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.nav {
+  text-decoration: none;
+  list-style: none;
+  font-size: 25px;
+  color: black;
+  font-weight: bold;
+}
+
+.logo {
+  height: 8em;
+  padding: 1.5em;
+  will-change: filter;
+  transition: filter 300ms;
+}
+
+.logo {
+  filter: drop-shadow(0 0 2em #646cffaa);
+}
+
+.logo.react {
+  filter: drop-shadow(0 0 2em #61dafbaa);
+}
+
+.logo.supabase {
+  filter: drop-shadow(0 0 2em #56f456aa);
+
+}
+
+.logo.google {
+  filter: drop-shadow(0 0 2em #f05a57aa);
+  height: 3em;
+  width: 3rem;
+  padding: 0;
+}
+
+.login-container {
+  background-color: var(--violeta-main);
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: flex-start;
+  text-align: center;
+  color: rgba(255, 255, 255, 0.87);
+}
+
+.login {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  margin-top: 2rem;
+  gap: 20px;
+  background-color: var(--lavanda);
+  border-radius: 5px;
+  padding: 2rem;
+  -webkit-box-shadow: 2px 1px 13px 0px rgba(0, 0, 0, 0.75);
+  -moz-box-shadow: 2px 1px 13px 0px rgba(0, 0, 0, 0.75);
+  box-shadow: 2px 1px 13px 0px rgba(0, 0, 0, 0.75);
+}
+
+.login button {
+  border-radius: 5px;
+  border-style: none;
+  cursor: pointer;
+  margin: 1rem;
+  padding: 1rem;
+  background-color: var(--violeta-main);
+  color: white;
+  font-weight: bold;
+  -webkit-box-shadow: 2px 1px 13px 0px rgba(0, 0, 0, 0.75);
+  -moz-box-shadow: 2px 1px 13px 0px rgba(0, 0, 0, 0.75);
+  box-shadow: 2px 1px 13px 0px rgba(0, 0, 0, 0.75);
+}
+
+.login buton:hover {
+  background-color: var(--morado-oscuro-main);
 }
 
 @media (max-width: 700px) {
@@ -226,4 +314,8 @@ main {
   .volumen-muted {
     margin-left: 1rem;
   }
+
+
 }
+
+@media(min-width:1001px) {}

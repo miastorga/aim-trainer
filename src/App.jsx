@@ -6,9 +6,7 @@ import { Terminado } from './components/Terminado'
 import { Footer } from './components/Footer'
 import { Volumen } from './components/Volumen'
 import { VolumenMuted } from './components/VolumenMuted'
-import { AuthContextProvider } from './context/AuthContext'
 import './App.css'
-import { Login } from './components/Login'
 
 export const GameState = {
   notStarted: 'notStarted',
@@ -72,37 +70,31 @@ function App() {
   const showRemaining = gameState === GameState.inProgress && !isGameFinished
 
   return (
-    <AuthContextProvider>
-      <nav>
-        <h1>Human Benchmark</h1>
-      </nav>
-      <main>
-        <Login />
-        <div className="main-content">
-          <div className='title'>
-            {gameState === GameState.notStarted && <h1>Aim Trainer</h1>}
-          </div>
-          <div className='header'>
-            {showRemaining && <h2>Remaining: {remaining}</h2>}
-          </div>
-          <div className='diana-container' ref={dianaContainerRef}>
-            {remaining > 0 && <Diana handleDianaClick={handleDianaClick} buttonPosition={buttonPosition} handleAverageClick={handleAverageClick} isMuted={isMuted} />}
-            {gameState === GameState.finished && <Terminado onGameRestart={handleGameRestart} averageTime={averageTime} />}
-          </div>
-          <Footer gameState={gameState} />
+    <main>
+      <div className="main-content">
+        <div className='title'>
+          {gameState === GameState.notStarted && <h1>Aim Trainer</h1>}
         </div>
-        <div className='show-on-mobile'>
-          <h1>This test is intended to be taken on a desktop or laptop. (Or make your browser window larger)</h1>
+        <div className='header'>
+          {showRemaining && <h2>Remaining: {remaining}</h2>}
         </div>
-        <div>
-          <div onClick={() => setIsMuted(!isMuted)}>
-            {
-              isMuted ? <VolumenMuted /> : <Volumen />
-            }
-          </div>
+        <div className='diana-container' ref={dianaContainerRef}>
+          {remaining > 0 && <Diana handleDianaClick={handleDianaClick} buttonPosition={buttonPosition} handleAverageClick={handleAverageClick} isMuted={isMuted} />}
+          {gameState === GameState.finished && <Terminado onGameRestart={handleGameRestart} averageTime={averageTime} />}
         </div>
-      </main>
-    </AuthContextProvider>
+        <Footer gameState={gameState} />
+      </div>
+      <div className='show-on-mobile'>
+        <h1>This test is intended to be taken on a desktop or laptop. (Or make your browser window larger)</h1>
+      </div>
+      <div>
+        <div onClick={() => setIsMuted(!isMuted)}>
+          {
+            isMuted ? <VolumenMuted /> : <Volumen />
+          }
+        </div>
+      </div>
+    </main>
   )
 }
 
