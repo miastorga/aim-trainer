@@ -15,7 +15,7 @@ export const GameState = {
 }
 
 function App() {
-  const TOTAL_REMAINING = 20
+  const TOTAL_REMAINING = 2
   const dianaContainerRef = useRef()
   const [buttonPosition, setButtonPosition] = useState({ top: '50%', left: '50%' })
   const [remaining, setRemaining] = useState(TOTAL_REMAINING) // Estado para rastrear los click faltantes

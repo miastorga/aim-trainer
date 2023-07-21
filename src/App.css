@@ -69,6 +69,9 @@ nav h1 {
   color: black;
 }
 
+
+
+
 main {
   background: var(--violeta-main);
   display: grid;
@@ -155,20 +158,6 @@ main {
   font-size: 20px;
 }
 
-.btn {
-  padding: 15px 25px;
-  border-radius: 5px;
-  border: none;
-  background-color: var(--violeta-secondary);
-  color: black;
-  font-weight: bolder;
-}
-
-.btn:hover {
-  cursor: pointer;
-  background-color: var(--lavanda);
-}
-
 .terminado-container {
   display: flex;
   flex-direction: column;
@@ -249,22 +238,33 @@ nav {
   box-shadow: 2px 1px 13px 0px rgba(0, 0, 0, 0.75);
 }
 
-.login button {
+/* .sign-in {
   border-radius: 5px;
   border-style: none;
-  cursor: pointer;
   margin: 1rem;
   padding: 1rem;
-  background-color: var(--violeta-main);
-  color: white;
-  font-weight: bold;
-  -webkit-box-shadow: 2px 1px 13px 0px rgba(0, 0, 0, 0.75);
-  -moz-box-shadow: 2px 1px 13px 0px rgba(0, 0, 0, 0.75);
-  box-shadow: 2px 1px 13px 0px rgba(0, 0, 0, 0.75);
+  color: black;
+} */
+
+.sign-out {
+  color: black;
+  padding: 5px 15px;
+  border-radius: 5px;
+  font-size: 20px;
+  text-decoration: none;
 }
 
-.login buton:hover {
-  background-color: var(--morado-oscuro-main);
+.login button:hover {
+  background-color: var(--lavanda);
+}
+
+.btn {
+  border-radius: 5px;
+  font-weight: bold;
+  cursor: pointer;
+  background-color: white;
+  border-color: var(--morado-oscuro-main);
+  border-width: 2px;
 }
 
 @media (max-width: 700px) {

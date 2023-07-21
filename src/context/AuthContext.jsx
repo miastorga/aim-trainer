@@ -1,5 +1,7 @@
+/* eslint-disable react/prop-types */
 import { createContext, useContext, useEffect, useState } from "react"
 import { supabase } from "../supabase/supabase.config"
+import { redirect } from "react-router-dom"
 
 const AuthContext = createContext()
 
@@ -7,36 +9,28 @@ export const AuthContextProvider = ({ children }) => {
   const [user, setUser] = useState([])
 
   async function singInWithGoogle() {
-    const { data, error } = await supabase.auth.signInWithOAuth({
+    const { data } = await supabase.auth.signInWithOAuth({
       provider: 'google'
     })
-    if (error) {
-      throw new Error(error, " Error al iniciar sesion con google")
-    }
     return data
   }
 
   async function signOut() {
-    const { error } = await supabase.auth.signOut()
-    if (error) {
-      throw new Error(error, " Error al cerrar sesion con google")
-    }
+    await supabase.auth.signOut()
+    setUser(null)
   }
 
   useEffect(() => {
-    const { data: authListener } = supabase.auth.onAuthStateChange(async (event, session) => {
-      console.log("supabase session ", session)
-      if (session == null) {
-        console.log("No logeado, irse al login")
-      } else {
-        setUser(session.user)
-        console.log("existe una session ", session.user)
-      }
+    const { data: authListener } = supabase.auth.onAuthStateChange(async (_event, session) => {
+      setUser(session?.user.user_metadata)
+      console.log("existe una session ", session?.user.user_metadata)
+      redirect('/')
     })
     return () => {
-      authListener.subscription
+      authListener.subscription.unsubscribe()
     }
   }, [])
+
   return (
     <AuthContext.Provider value={{ singInWithGoogle, signOut, user }}>
       {children}
@@ -44,6 +38,6 @@ export const AuthContextProvider = ({ children }) => {
   )
 }
 
-export const UserAth = () => {
+export const UserAuth = () => {
   return useContext(AuthContext)
 }
