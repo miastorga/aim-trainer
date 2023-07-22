@@ -25,7 +25,11 @@ function App() {
   const [startTime, setStartTime] = useState(0)
   const [clickTimes, setClickTimes] = useState([])
   const [averageTime, setAverageTime] = useState(0)
+  //--------------------------------------------------
 
+  //************* TODO: ARREGLAR BOTONES *************
+
+  //--------------------------------------------------
   useEffect(() => {
     if (clickTimes.length > 1) {
       const sum = clickTimes.reduce((a, b) => a + b, 0)

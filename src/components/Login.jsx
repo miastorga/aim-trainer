@@ -17,7 +17,7 @@ export const Login = () => {
         <h1 style={{ color: 'black', fontWeight: 'bolder' }}>Vite + React + Supabase</h1>
         <img src={googleLogo} className="logo google" alt="Supabase logo" />
         <div className="card">
-          <button onClick={singInWithGoogle} className='btn sign-out'>Iniciar sesion con Google</button>
+          <button onClick={singInWithGoogle} className='btn sign-out'>Continuar con Google</button>
         </div>
       </div>
     </div>
