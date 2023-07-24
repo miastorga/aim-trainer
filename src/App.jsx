@@ -1,11 +1,12 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { Diana } from './components/Diana'
-import { useRef, useEffect } from 'react'
+import { useRef } from 'react'
 import { handleDianaMovement } from './dianaUtils'
 import { Terminado } from './components/Terminado'
 import { Footer } from './components/Footer'
 import { Volumen } from './components/Volumen'
 import { VolumenMuted } from './components/VolumenMuted'
+// import { useAverageTime } from './hooks/useAverageTime'
 import './App.css'
 
 export const GameState = {
@@ -15,7 +16,7 @@ export const GameState = {
 }
 
 function App() {
-  const TOTAL_REMAINING = 20
+  const TOTAL_REMAINING = 2
   const dianaContainerRef = useRef()
   const [buttonPosition, setButtonPosition] = useState({ top: '50%', left: '50%' })
   const [remaining, setRemaining] = useState(TOTAL_REMAINING) // Estado para rastrear los click faltantes
@@ -34,15 +35,6 @@ function App() {
     }
   }, [clickTimes])
 
-  function handleAverageClick() {
-    const currentTime = new Date().getTime()
-    if (startTime) {
-      const deltaTime = currentTime - startTime
-      setClickTimes([...clickTimes, deltaTime])
-    }
-    setStartTime(currentTime)
-  }
-
   function handleDianaClick() {
     if (isFirstClick) {
       setIsFirstClick(false)
@@ -53,6 +45,15 @@ function App() {
       setRemaining((prevRemaining) => prevRemaining - 1)
     }
     if (remaining === 1) setGameState(GameState.finished)
+  }
+
+  function handleAverageClick() {
+    const currentTime = new Date().getTime()
+    if (startTime) {
+      const deltaTime = currentTime - startTime
+      setClickTimes([...clickTimes, deltaTime])
+    }
+    setStartTime(currentTime)
   }
 
   function handleGameRestart() {
@@ -70,36 +71,31 @@ function App() {
   const showRemaining = gameState === GameState.inProgress && !isGameFinished
 
   return (
-    <>
-      <nav>
-        <h1>Human Benchmark</h1>
-      </nav>
-      <main>
-        <div className="main-content">
-          <div className='title'>
-            {gameState === GameState.notStarted && <h1>Aim Trainer</h1>}
-          </div>
-          <div className='header'>
-            {showRemaining && <h2>Remaining: {remaining}</h2>}
-          </div>
-          <div className='diana-container' ref={dianaContainerRef}>
-            {remaining > 0 && <Diana handleDianaClick={handleDianaClick} buttonPosition={buttonPosition} handleAverageClick={handleAverageClick} isMuted={isMuted} />}
-            {gameState === GameState.finished && <Terminado onGameRestart={handleGameRestart} averageTime={averageTime} />}
-          </div>
-          <Footer gameState={gameState} />
+    <main>
+      <div className="main-content">
+        <div className='title'>
+          {gameState === GameState.notStarted && <h1>Aim Trainer</h1>}
         </div>
-        <div className='show-on-mobile'>
-          <h1>This test is intended to be taken on a desktop or laptop. (Or make your browser window larger)</h1>
+        <div className='header'>
+          {showRemaining && <h2>Remaining: {remaining}</h2>}
         </div>
-        <div>
-          <div onClick={() => setIsMuted(!isMuted)}>
-            {
-              isMuted ? <VolumenMuted /> : <Volumen />
-            }
-          </div>
+        <div className='diana-container' ref={dianaContainerRef}>
+          {remaining > 0 && <Diana handleDianaClick={handleDianaClick} buttonPosition={buttonPosition} handleAverageClick={handleAverageClick} isMuted={isMuted} />}
+          {gameState === GameState.finished && <Terminado onGameRestart={handleGameRestart} averageTime={averageTime} />}
         </div>
-      </main>
-    </>
+        <Footer gameState={gameState} />
+      </div>
+      <div className='show-on-mobile'>
+        <h1>This test is intended to be taken on a desktop or laptop. (Or make your browser window larger)</h1>
+      </div>
+      <div>
+        <div onClick={() => setIsMuted(!isMuted)}>
+          {
+            isMuted ? <VolumenMuted /> : <Volumen />
+          }
+        </div>
+      </div>
+    </main>
   )
 }
 
