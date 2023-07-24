@@ -1,11 +1,12 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { Diana } from './components/Diana'
-import { useRef, useEffect } from 'react'
+import { useRef } from 'react'
 import { handleDianaMovement } from './dianaUtils'
 import { Terminado } from './components/Terminado'
 import { Footer } from './components/Footer'
 import { Volumen } from './components/Volumen'
 import { VolumenMuted } from './components/VolumenMuted'
+// import { useAverageTime } from './hooks/useAverageTime'
 import './App.css'
 
 export const GameState = {
@@ -25,11 +26,7 @@ function App() {
   const [startTime, setStartTime] = useState(0)
   const [clickTimes, setClickTimes] = useState([])
   const [averageTime, setAverageTime] = useState(0)
-  //--------------------------------------------------
 
-  //************* TODO: ARREGLAR BOTONES *************
-
-  //--------------------------------------------------
   useEffect(() => {
     if (clickTimes.length > 1) {
       const sum = clickTimes.reduce((a, b) => a + b, 0)
@@ -37,15 +34,6 @@ function App() {
       setAverageTime(average.toFixed(2))
     }
   }, [clickTimes])
-
-  function handleAverageClick() {
-    const currentTime = new Date().getTime()
-    if (startTime) {
-      const deltaTime = currentTime - startTime
-      setClickTimes([...clickTimes, deltaTime])
-    }
-    setStartTime(currentTime)
-  }
 
   function handleDianaClick() {
     if (isFirstClick) {
@@ -57,6 +45,15 @@ function App() {
       setRemaining((prevRemaining) => prevRemaining - 1)
     }
     if (remaining === 1) setGameState(GameState.finished)
+  }
+
+  function handleAverageClick() {
+    const currentTime = new Date().getTime()
+    if (startTime) {
+      const deltaTime = currentTime - startTime
+      setClickTimes([...clickTimes, deltaTime])
+    }
+    setStartTime(currentTime)
   }
 
   function handleGameRestart() {

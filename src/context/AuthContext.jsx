@@ -7,6 +7,7 @@ const AuthContext = createContext()
 
 export const AuthContextProvider = ({ children }) => {
   const [user, setUser] = useState([])
+  const [isLoading, setIsLoading] = useState(true)
 
   async function singInWithGoogle() {
     const { data } = await supabase.auth.signInWithOAuth({
@@ -16,23 +17,39 @@ export const AuthContextProvider = ({ children }) => {
   }
 
   async function signOut() {
+    setIsLoading(true)
     await supabase.auth.signOut()
     setUser(null)
+    setIsLoading(false)
   }
 
   useEffect(() => {
-    const { data: authListener } = supabase.auth.onAuthStateChange(async (_event, session) => {
-      setUser(session?.user.user_metadata)
-      console.log("existe una session ", session?.user.user_metadata)
-      redirect('/')
+    const setData = async () => {
+      const { data: { session }, error } = await supabase.auth.getSession()
+      if (error) throw error
+      console.log(session?.user)
+      setUser(session?.user)
+      setIsLoading(false)
+    }
+    const { data: authListener } = supabase.auth.onAuthStateChange(async (event, session) => {
+      if (event === 'SIGNED_IN') {
+        setUser(session?.user)
+        console.log(session?.user)
+        setIsLoading(false)
+        redirect('/')
+      } else {
+        setUser(null)
+        setIsLoading(false)
+      }
     })
+    setData()
     return () => {
       authListener.subscription.unsubscribe()
     }
   }, [])
 
   return (
-    <AuthContext.Provider value={{ singInWithGoogle, signOut, user }}>
+    <AuthContext.Provider value={{ singInWithGoogle, signOut, user, isLoading }}>
       {children}
     </AuthContext.Provider>
   )

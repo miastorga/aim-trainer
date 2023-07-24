@@ -24,35 +24,6 @@ span {
   color: var(--lavanda);
 }
 
-.scale-up-center {
-  -webkit-animation: scale-up-center 0.1s cubic-bezier(0.390, 0.575, 0.565, 1.000) both;
-  animation: scale-up-center 0.1s cubic-bezier(0.390, 0.575, 0.565, 1.000) both;
-}
-
-@-webkit-keyframes scale-up-center {
-  0% {
-    -webkit-transform: scale(0.5);
-    transform: scale(0.5);
-  }
-
-  100% {
-    -webkit-transform: scale(1);
-    transform: scale(1);
-  }
-}
-
-@keyframes scale-up-center {
-  0% {
-    -webkit-transform: scale(0.5);
-    transform: scale(0.5);
-  }
-
-  100% {
-    -webkit-transform: scale(1);
-    transform: scale(1);
-  }
-}
-
 nav {
   background-color: white;
   height: 60px;
@@ -68,9 +39,6 @@ nav {
 nav h1 {
   color: black;
 }
-
-
-
 
 main {
   background: var(--violeta-main);
@@ -129,7 +97,9 @@ main {
 .header {
   width: 100%;
   text-align: center;
-  margin-bottom: 20px;
+  margin-bottom: 10px;
+  margin-top: 15px;
+  font-size: 20px;
 }
 
 .diana-container {
@@ -250,7 +220,7 @@ nav {
   color: black;
   padding: 5px 15px;
   border-radius: 5px;
-  font-size: 20px;
+  font-size: 25px;
   text-decoration: none;
 }
 
@@ -259,12 +229,17 @@ nav {
 }
 
 .btn {
+  padding: 15px 25px;
   border-radius: 5px;
   font-weight: bold;
   cursor: pointer;
   background-color: white;
   border-color: var(--morado-oscuro-main);
   border-width: 2px;
+}
+
+.btn:hover {
+  background-color: var(--lavanda);
 }
 
 @media (max-width: 700px) {

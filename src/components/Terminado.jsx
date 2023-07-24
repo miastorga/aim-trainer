@@ -7,12 +7,12 @@ import { UserAuth } from '../context/AuthContext'
 export const Terminado = ({ onGameRestart, averageTime }) => {
   const { user } = UserAuth()
   const navigate = useNavigate()
+
   function handleSaveScore() {
     if (!user) {
       navigate('login')
     }
   }
-  console.log(user)
   return (
     <div className='terminado-container'>
       <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>

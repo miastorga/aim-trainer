@@ -12,7 +12,6 @@ export const Diana = ({ handleDianaClick, buttonPosition, handleAverageClick, is
     <img src={target} alt="diana" className='diana-svg ' style={{
       top: `${buttonPosition.top}px`,
       left: `${buttonPosition.left}px`,
-      // transform: `translate(${buttonPosition.left}px, ${buttonPosition.top}px)`
     }} onClick={() => {
       handleDianaClick()
       handleAverageClick()

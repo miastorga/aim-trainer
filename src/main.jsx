@@ -8,7 +8,6 @@ import './index.css'
 import { Login } from "./components/Login.jsx"
 import { AuthContextProvider } from './context/AuthContext'
 import { Navbar } from "./components/Navbar.jsx"
-
 const router = createBrowserRouter([
   {
     path: "/",
