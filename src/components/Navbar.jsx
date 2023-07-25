@@ -4,7 +4,6 @@ import '../App.css'
 
 export const Navbar = () => {
   const { user, signOut, isLoading } = UserAuth()
-  console.log(isLoading)
   return (
     <>
       <nav>

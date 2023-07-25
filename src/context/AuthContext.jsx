@@ -27,14 +27,12 @@ export const AuthContextProvider = ({ children }) => {
     const setData = async () => {
       const { data: { session }, error } = await supabase.auth.getSession()
       if (error) throw error
-      console.log(session?.user)
       setUser(session?.user)
       setIsLoading(false)
     }
     const { data: authListener } = supabase.auth.onAuthStateChange(async (event, session) => {
       if (event === 'SIGNED_IN') {
         setUser(session?.user)
-        console.log(session?.user)
         setIsLoading(false)
         redirect('/')
       } else {
