@@ -5,9 +5,11 @@ import {
   RouterProvider,
 } from "react-router-dom"
 import './index.css'
-import { Login } from "./components/Login.jsx"
-import { AuthContextProvider } from './context/AuthContext'
 import { Navbar } from "./components/Navbar.jsx"
+// import { AuthContainer } from "./components/AuthContainer.jsx"
+import { AuthContextProvider } from "./context/AuthContext.jsx"
+import { Login } from "./components/Login.jsx"
+import { SignUp } from "./components/Signup.jsx"
 const router = createBrowserRouter([
   {
     path: "/",
@@ -22,6 +24,11 @@ const router = createBrowserRouter([
       {
         path: 'login',
         element: <Login />,
+        errorElement: <h1>error</h1>,
+      },
+      {
+        path: 'signup',
+        element: <SignUp />,
         errorElement: <h1>error</h1>,
       }
     ]
