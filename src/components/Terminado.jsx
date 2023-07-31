@@ -1,18 +1,22 @@
 /* eslint-disable react/prop-types */
-import { useNavigate } from 'react-router-dom'
 import '../App.css'
 import target from '../assets/target.svg'
 import { UserAuth } from '../context/AuthContext'
+import { supabase } from '../supabase/supabase.config'
 
 export const Terminado = ({ onGameRestart, averageTime }) => {
   const { user } = UserAuth()
-  const navigate = useNavigate()
+  console.log(user)
 
-  function handleSaveScore() {
-    if (!user) {
-      navigate('login')
-    }
+  async function handleSaveScore() {
+    const { data } = await supabase
+      .from('Score')
+      .insert({ average_time: averageTime, user_id: user.id })
+      .select()
+    console.log(data)
+    return data
   }
+
   return (
     <div className='terminado-container'>
       <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
