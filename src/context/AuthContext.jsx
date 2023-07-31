@@ -1,17 +1,14 @@
 /* eslint-disable react/prop-types */
 import { createContext, useContext, useEffect, useState } from "react"
 import { supabase } from "../supabase/supabase.config"
-import { redirect } from "react-router-dom"
 
 const AuthContext = createContext()
 
 export const AuthContextProvider = ({ children }) => {
   const [user, setUser] = useState([])
-  const [isLoading, setIsLoading] = useState(false)
+  const [isLoading, setIsLoading] = useState(true)
 
   async function signUp({ email, pass }) {
-    setIsLoading(true)
-    console.log(email, pass)
     const { data, error } = await supabase.auth.signUp({
       email: email,
       password: pass,
@@ -21,26 +18,22 @@ export const AuthContextProvider = ({ children }) => {
         }
       }
     })
-
     console.log(data)
-    console.log(error.message)
+    console.log(error)
     setIsLoading(false)
-    return { data, error: error.message }
+    return { data, error: error?.message }
   }
 
   async function signIn({ email, pass }) {
-    setIsLoading(true)
     const { data, error } = await supabase.auth.signInWithPassword({
       email: email,
       password: pass,
     })
-    console.log(error.message)
     setIsLoading(false)
-    return { data, error: error.message }
+    return { data, error: error?.message }
   }
 
   async function signOut() {
-    setIsLoading(true)
     const { error } = await supabase.auth.signOut()
     setIsLoading(false)
     if (error) return error
@@ -54,17 +47,28 @@ export const AuthContextProvider = ({ children }) => {
       setIsLoading(false)
     }
     const { data: authListener } = supabase.auth.onAuthStateChange(async (event, session) => {
-      if (event === 'SIGNED_IN') {
-        setUser(session?.user)
-        console.log(session?.user)
-        setIsLoading(false)
-        redirect('/')
-      } else {
-        setUser(null)
-        setIsLoading(false)
+      console.log(event)
+      console.log(session)
+      switch (event) {
+        case 'SIGNED_IN':
+          setUser(session?.user)
+          setIsLoading(false)
+          break
+        case 'SIGNED_OUT':
+          setUser(null)
+          setIsLoading(false)
+          break
+        case 'PASSWORD_RESET':
+          // Lógica para cuando se resetea la contraseña
+          break
+        default:
+          // Lógica por defecto
+          break
       }
     })
+
     setData()
+
     return () => {
       authListener.subscription.unsubscribe()
     }
@@ -72,7 +76,7 @@ export const AuthContextProvider = ({ children }) => {
 
   return (
     <AuthContext.Provider value={{ user, isLoading, signUp, signIn, signOut }}>
-      {children}
+      {!isLoading && children}
     </AuthContext.Provider>
   )
 }

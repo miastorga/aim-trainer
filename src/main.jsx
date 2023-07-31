@@ -6,10 +6,11 @@ import {
 } from "react-router-dom"
 import './index.css'
 import { Navbar } from "./components/Navbar.jsx"
-// import { AuthContainer } from "./components/AuthContainer.jsx"
 import { AuthContextProvider } from "./context/AuthContext.jsx"
 import { Login } from "./components/Login.jsx"
 import { SignUp } from "./components/Signup.jsx"
+import { ProtectedRoute } from "./components/ProtectedRoute.jsx"
+
 const router = createBrowserRouter([
   {
     path: "/",
@@ -23,12 +24,12 @@ const router = createBrowserRouter([
       },
       {
         path: 'login',
-        element: <Login />,
+        element: <ProtectedRoute> <Login /> </ProtectedRoute>,
         errorElement: <h1>error</h1>,
       },
       {
         path: 'signup',
-        element: <SignUp />,
+        element: <ProtectedRoute><SignUp /></ProtectedRoute>,
         errorElement: <h1>error</h1>,
       }
     ]

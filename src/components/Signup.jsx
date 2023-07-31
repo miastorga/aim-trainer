@@ -3,23 +3,24 @@ import { useRef, useState } from 'react'
 import reactLogo from '../assets/react.svg'
 import supabaseLogo from '../assets/supabaselogo.png'
 import viteLogo from '../assets/vite.svg'
-
 import '../App.css'
+
 export const SignUp = () => {
   const { signUp } = UserAuth()
   const emailRef = useRef('')
   const passRef = useRef('')
-  const [errorMsg, setErrorMsg] = useState('')
+  const [isSignUp, setIsSignUp] = useState(false)
 
   async function handlerSubmit(e) {
     e.preventDefault()
-    const data = { email: emailRef.current?.value, pass: passRef.current.value }
-    const signUpData = await signUp(data)
-    if (signUpData.error) {
-      const error = signUpData.error
-      setErrorMsg(error)
+    const userData = { email: emailRef.current?.value, pass: passRef.current.value }
+    const { data, error } = await signUp(userData)
+    console.log(data)
+    if (data.user != null) {
+      setIsSignUp(true)
+      return // Algun tipo de mensaje diciendo que revise su correo
     }
-    console.log(signUpData)
+    console.log(error)
   }
 
   return (
@@ -31,11 +32,11 @@ export const SignUp = () => {
           <img src={supabaseLogo} className="logo supabase" alt="Supabase logo" />
         </div>
         <h1 style={{ color: 'black', fontWeight: 'bolder' }}>Vite + React + Supabase</h1>
-        <form action="" onSubmit={handlerSubmit}>
+        <form action="" onSubmit={handlerSubmit} className="login-form">
           <input type="text" ref={emailRef} name='email' placeholder='example@gmail.com' />
           <input type="password" name='pass' ref={passRef} placeholder='**********' />
-          {errorMsg && <p>{errorMsg}</p>}
-          <button type='submit'>Accept</button>
+          <button type='submit' className="btn">Accept</button>
+          {isSignUp && <p style={{ color: 'green', width: '400px', marginTop: '10px' }}>We&apos;ve sent a verification link to your email. Please click on the link to activate your account.</p>}
         </form>
       </div>
     </div>

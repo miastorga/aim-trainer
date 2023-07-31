@@ -10,7 +10,6 @@ export const Footer = ({ gameState }) => {
           <div>
             <p>Hit 30 targets as quickly as you can</p>
             <p>Click the target above to begin</p>
-            <a href="https://www.iubenda.com/privacy-policy/93074037" style={{ color: 'white' }} title="Privacy Policy ">Privacy Policy</a>
           </div>
         </>
       )}

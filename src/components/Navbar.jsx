@@ -1,16 +1,17 @@
+/* eslint-disable react/prop-types */
 import { Link, Outlet, useNavigate } from 'react-router-dom'
 import { UserAuth } from "../context/AuthContext"
 import '../App.css'
 
 export const Navbar = () => {
-  const { user, signOut, isLoading } = UserAuth()
+  const { user, signOut } = UserAuth()
+  // console.log(user)
   const navigate = useNavigate()
-  console.log(user)
   function handleSignOut() {
     signOut()
     navigate('/')
   }
-  if (isLoading) return <h1>loading...</h1>
+
   return (
     <>
       <nav>
@@ -23,6 +24,9 @@ export const Navbar = () => {
           alignItems: 'center',
           gap: '1rem'
         }}>
+          {
+            user ? <h1>{user.email}</h1> : null
+          }
         </div>
         <div>
           {
@@ -30,7 +34,7 @@ export const Navbar = () => {
               <Link to={'login'} className='sign-out'>Login</Link>
           }
         </div>
-      </nav>
+      </nav >
       <Outlet />
     </>
   )
