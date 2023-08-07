@@ -43,6 +43,7 @@ export const AuthContextProvider = ({ children }) => {
       console.log(session?.user)
       if (error) throw error
       setUser(session?.user)
+      console.log(session?.user)
       setIsLoading(false)
     }
     const { data: authListener } = supabase.auth.onAuthStateChange(async (event, session) => {
