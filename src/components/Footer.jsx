@@ -1,16 +1,17 @@
 /* eslint-disable react/prop-types */
-import { GameState } from '../App'
+import { useContext } from 'react'
 import '../App.css'
+import { GameContext } from '../context/GameStateContext'
 
-export const Footer = ({ gameState }) => {
+export const Footer = () => {
+  const { gameState, GAME_STATE } = useContext(GameContext)
   return (
     <div className='footer'>
-      {gameState === GameState.notStarted && (
+      {gameState === GAME_STATE.notStarted && (
         <>
           <div>
             <p>Hit 30 targets as quickly as you can</p>
             <p>Click the target above to begin</p>
-            <a href="https://www.iubenda.com/privacy-policy/93074037" style={{ color: 'white' }} title="Privacy Policy ">Privacy Policy</a>
           </div>
         </>
       )}

@@ -1,7 +1,6 @@
 /* eslint-disable react/prop-types */
 import { createContext, useContext, useEffect, useState } from "react"
 import { supabase } from "../supabase/supabase.config"
-import { redirect } from "react-router-dom"
 
 const AuthContext = createContext()
 
@@ -9,48 +8,78 @@ export const AuthContextProvider = ({ children }) => {
   const [user, setUser] = useState([])
   const [isLoading, setIsLoading] = useState(true)
 
-  async function singInWithGoogle() {
-    const { data } = await supabase.auth.signInWithOAuth({
-      provider: 'google'
+  async function signUp({ email, pass }) {
+    const { data, error } = await supabase.auth.signUp({
+      email: email,
+      password: pass,
+      options: {
+        data: {
+          email
+        }
+      }
     })
-    return data
+    setIsLoading(false)
+    return { data, error: error?.message }
+  }
+
+  async function signIn({ email, pass }) {
+    const { data, error } = await supabase.auth.signInWithPassword({
+      email: email,
+      password: pass,
+    })
+    setIsLoading(false)
+    return { data, error: error?.message }
   }
 
   async function signOut() {
-    setIsLoading(true)
-    await supabase.auth.signOut()
-    setUser(null)
+    const { error } = await supabase.auth.signOut()
     setIsLoading(false)
+    if (error) return error
   }
 
   useEffect(() => {
     const setData = async () => {
       const { data: { session }, error } = await supabase.auth.getSession()
+      console.log(session?.user)
       if (error) throw error
       setUser(session?.user)
       console.log(session?.user)
       setIsLoading(false)
     }
     const { data: authListener } = supabase.auth.onAuthStateChange(async (event, session) => {
-      if (event === 'SIGNED_IN') {
-        setUser(session?.user)
-        console.log(session?.user)
-        setIsLoading(false)
-        redirect('/')
-      } else {
-        setUser(null)
-        setIsLoading(false)
+      switch (event) {
+        case 'SIGNED_IN':
+          console.log('log in')
+          setUser(session?.user)
+          setIsLoading(false)
+          break
+        case 'SIGNED_OUT':
+          console.log('sign out')
+          setUser(null)
+          setIsLoading(false)
+          break
+        case 'PASSWORD_RESET':
+          // Lógica para cuando se resetea la contraseña
+          break
+        case 'USER_UPDATED':
+          console.log('user update')
+          break
+        default:
+          // Lógica por defecto
+          break
       }
     })
+
     setData()
+
     return () => {
       authListener.subscription.unsubscribe()
     }
   }, [])
 
   return (
-    <AuthContext.Provider value={{ singInWithGoogle, signOut, user, isLoading }}>
-      {children}
+    <AuthContext.Provider value={{ user, isLoading, signUp, signIn, signOut, setIsLoading }}>
+      {!isLoading && children}
     </AuthContext.Provider>
   )
 }

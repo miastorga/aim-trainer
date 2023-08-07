@@ -1,29 +1,26 @@
-
-import { Link, useNavigate } from "react-router-dom"
+import { UserAuth } from "../context/AuthContext"
+import { useRef, useState } from 'react'
 import reactLogo from '../assets/react.svg'
 import supabaseLogo from '../assets/supabaselogo.png'
 import viteLogo from '../assets/vite.svg'
-import { UserAuth } from "../context/AuthContext"
-import { useRef, useState } from 'react'
 import '../App.css'
 
-export const Login = () => {
-  const { signIn } = UserAuth()
+export const SignUp = () => {
+  const { signUp } = UserAuth()
   const emailRef = useRef('')
   const passRef = useRef('')
-  const [errorMsg, setErrorMsg] = useState(null)
-  const navigate = useNavigate()
+  const [isSignUp, setIsSignUp] = useState(false)
 
   async function handlerSubmit(e) {
     e.preventDefault()
-    const dataUser = { email: emailRef.current.value, pass: passRef.current.value }
-    const { error } = await signIn(dataUser)
-    if (error) {
-      setErrorMsg(error)
-      return
+    const userData = { email: emailRef.current?.value, pass: passRef.current.value }
+    const { data, error } = await signUp(userData)
+    console.log(data)
+    if (data.user != null) {
+      setIsSignUp(true)
+      return // Algun tipo de mensaje diciendo que revise su correo
     }
-    setErrorMsg(null)
-    navigate('/')
+    console.log(error)
   }
 
   return (
@@ -36,14 +33,11 @@ export const Login = () => {
         </div>
         <h1 style={{ color: 'black', fontWeight: 'bolder' }}>Vite + React + Supabase</h1>
         <form action="" onSubmit={handlerSubmit} className="login-form">
-          <input type="text" name='email' ref={emailRef} placeholder='example@gmail.com' />
+          <input type="text" ref={emailRef} name='email' placeholder='example@gmail.com' />
           <input type="password" name='pass' ref={passRef} placeholder='**********' />
           <button type='submit' className="btn">Accept</button>
-          {errorMsg && <p className="error-msg" style={{ margin: '10px 0px' }}>{errorMsg}</p>}
+          {isSignUp && <p style={{ color: 'green', width: '400px', marginTop: '10px' }}>We&apos;ve sent a verification link to your email. Please click on the link to activate your account.</p>}
         </form>
-        <p className="go-to-signup" >Dont have an account?
-          <Link to={'/signup'}> Sign Up</Link>
-        </p>
       </div>
     </div>
   )

@@ -5,9 +5,13 @@ import {
   RouterProvider,
 } from "react-router-dom"
 import './index.css'
-import { Login } from "./components/Login.jsx"
-import { AuthContextProvider } from './context/AuthContext'
 import { Navbar } from "./components/Navbar.jsx"
+import { AuthContextProvider } from "./context/AuthContext.jsx"
+import { Login } from "./components/Login.jsx"
+import { SignUp } from "./components/Signup.jsx"
+import { ProtectedRoute } from "./components/ProtectedRoute.jsx"
+import { GameStateContextProvider } from "./context/GameStateContext.jsx"
+
 const router = createBrowserRouter([
   {
     path: "/",
@@ -21,7 +25,12 @@ const router = createBrowserRouter([
       },
       {
         path: 'login',
-        element: <Login />,
+        element: <ProtectedRoute> <Login /> </ProtectedRoute>,
+        errorElement: <h1>error</h1>,
+      },
+      {
+        path: 'signup',
+        element: <ProtectedRoute><SignUp /></ProtectedRoute>,
         errorElement: <h1>error</h1>,
       }
     ]
@@ -30,6 +39,8 @@ const router = createBrowserRouter([
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <AuthContextProvider>
-    <RouterProvider router={router} />
+    <GameStateContextProvider>
+      <RouterProvider router={router} />
+    </GameStateContextProvider>
   </AuthContextProvider>
 )

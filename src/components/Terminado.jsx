@@ -3,16 +3,27 @@ import { useNavigate } from 'react-router-dom'
 import '../App.css'
 import target from '../assets/target.svg'
 import { UserAuth } from '../context/AuthContext'
+import { getCurrentDate } from '../utils'
+import { insertUserScore } from '../supabase/querys'
+import { useContext } from 'react'
+import { GameContext } from '../context/GameStateContext'
 
-export const Terminado = ({ onGameRestart, averageTime }) => {
+export const Terminado = () => {
+  const { handleGameRestart, averageTime } = useContext(GameContext)
   const { user } = UserAuth()
   const navigate = useNavigate()
+  const currentDate = getCurrentDate()
 
-  function handleSaveScore() {
-    if (!user) {
-      navigate('login')
+  async function handleSaveScore() {
+    if (user) {
+      handleGameRestart()
+      await insertUserScore({ average_time: averageTime, user_id: user.id, date: currentDate })
+      console.log('insertado')
+      return
     }
+    navigate('/login')
   }
+
   return (
     <div className='terminado-container'>
       <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
@@ -22,7 +33,7 @@ export const Terminado = ({ onGameRestart, averageTime }) => {
       </div>
       <div style={{ display: 'flex', gap: '10px' }}>
         <button className='btn' onClick={handleSaveScore}>Save score</button>
-        <button onClick={() => onGameRestart()} className='btn'>Try again</button>
+        <button onClick={() => handleGameRestart()} className='btn'>Try again</button>
       </div>
     </div >
   )

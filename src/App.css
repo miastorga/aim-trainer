@@ -24,6 +24,7 @@ span {
   color: var(--lavanda);
 }
 
+
 nav {
   background-color: white;
   height: 60px;
@@ -241,6 +242,39 @@ nav {
 .btn:hover {
   background-color: var(--lavanda);
 }
+
+.go-to-signup {
+  color: black;
+}
+
+.error-msg {
+  color: red;
+}
+
+
+.login-form input {
+  padding: 5px;
+  margin: 5px;
+}
+
+.login-form button {
+  padding: 10px;
+}
+
+table {
+  margin: auto;
+  padding: 25px;
+  text-align: center;
+  width: 40%;
+  background-color: var(--lavanda);
+}
+
+table thead tr {
+  font-size: 20px;
+  padding-bottom: 10px;
+}
+
+table tbody {}
 
 @media (max-width: 700px) {
   main {
