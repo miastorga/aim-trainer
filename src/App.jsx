@@ -9,6 +9,7 @@ import { GameContext } from './context/GameStateContext'
 
 function App() {
   const { gameState, GAME_STATE, dianaContainerRef, remaining, isMuted, setIsMuted } = useContext(GameContext)
+
   const isGameFinished = remaining === 0
   const showRemaining = gameState === GAME_STATE.inProgress && !isGameFinished
 

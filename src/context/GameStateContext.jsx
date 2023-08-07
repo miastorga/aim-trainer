@@ -12,7 +12,7 @@ export const GameStateContextProvider = ({ children }) => {
     finished: 'finished'
   }
 
-  const TOTAL_REMAINING = 5
+  const TOTAL_REMAINING = 2
 
   const [gameState, setGameState] = useState(GAME_STATE.notStarted) // Estado para mostrar las etapas del juego
   const [startTime, setStartTime] = useState(0)

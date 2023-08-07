@@ -16,8 +16,9 @@ export const Terminado = () => {
 
   async function handleSaveScore() {
     if (user) {
-      await insertUserScore({ average_time: averageTime, user_id: user.id, date: currentDate })
       handleGameRestart()
+      await insertUserScore({ average_time: averageTime, user_id: user.id, date: currentDate })
+      console.log('insertado')
       return
     }
     navigate('/login')

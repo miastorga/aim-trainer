@@ -48,15 +48,20 @@ export const AuthContextProvider = ({ children }) => {
     const { data: authListener } = supabase.auth.onAuthStateChange(async (event, session) => {
       switch (event) {
         case 'SIGNED_IN':
+          console.log('log in')
           setUser(session?.user)
           setIsLoading(false)
           break
         case 'SIGNED_OUT':
+          console.log('sign out')
           setUser(null)
           setIsLoading(false)
           break
         case 'PASSWORD_RESET':
           // Lógica para cuando se resetea la contraseña
+          break
+        case 'USER_UPDATED':
+          console.log('user update')
           break
         default:
           // Lógica por defecto
@@ -72,7 +77,7 @@ export const AuthContextProvider = ({ children }) => {
   }, [])
 
   return (
-    <AuthContext.Provider value={{ user, isLoading, signUp, signIn, signOut }}>
+    <AuthContext.Provider value={{ user, isLoading, signUp, signIn, signOut, setIsLoading }}>
       {!isLoading && children}
     </AuthContext.Provider>
   )

@@ -6,10 +6,12 @@ export const TimeRecords = () => {
   const { user } = UserAuth()
   const [userScore, setUserScore] = useState([])
 
+
   useEffect(() => {
     async function getScore() {
       if (user) {
         const score = await getUserScore({ userId: user.id })
+        console.log('get new score')
         setUserScore(score.data)
       }
     }
