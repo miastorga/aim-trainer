@@ -5,10 +5,9 @@ import '../App.css'
 
 export const Navbar = () => {
   const { user, signOut } = UserAuth()
-  // console.log(user)
   const navigate = useNavigate()
-  function handleSignOut() {
-    signOut()
+  async function handleSignOut() {
+    await signOut()
     navigate('/')
   }
 

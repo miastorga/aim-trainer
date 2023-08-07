@@ -10,6 +10,7 @@ import { AuthContextProvider } from "./context/AuthContext.jsx"
 import { Login } from "./components/Login.jsx"
 import { SignUp } from "./components/Signup.jsx"
 import { ProtectedRoute } from "./components/ProtectedRoute.jsx"
+import { GameStateContextProvider } from "./context/GameStateContext.jsx"
 
 const router = createBrowserRouter([
   {
@@ -38,6 +39,8 @@ const router = createBrowserRouter([
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <AuthContextProvider>
-    <RouterProvider router={router} />
+    <GameStateContextProvider>
+      <RouterProvider router={router} />
+    </GameStateContextProvider>
   </AuthContextProvider>
 )

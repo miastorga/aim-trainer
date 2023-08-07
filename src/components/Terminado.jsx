@@ -1,20 +1,26 @@
 /* eslint-disable react/prop-types */
+import { useNavigate } from 'react-router-dom'
 import '../App.css'
 import target from '../assets/target.svg'
 import { UserAuth } from '../context/AuthContext'
-import { supabase } from '../supabase/supabase.config'
+import { getCurrentDate } from '../utils'
+import { insertUserScore } from '../supabase/querys'
+import { useContext } from 'react'
+import { GameContext } from '../context/GameStateContext'
 
-export const Terminado = ({ onGameRestart, averageTime }) => {
+export const Terminado = () => {
+  const { handleGameRestart, averageTime } = useContext(GameContext)
   const { user } = UserAuth()
-  console.log(user)
+  const navigate = useNavigate()
+  const currentDate = getCurrentDate()
 
   async function handleSaveScore() {
-    const { data } = await supabase
-      .from('Score')
-      .insert({ average_time: averageTime, user_id: user.id })
-      .select()
-    console.log(data)
-    return data
+    if (user) {
+      await insertUserScore({ average_time: averageTime, user_id: user.id, date: currentDate })
+      handleGameRestart()
+      return
+    }
+    navigate('/login')
   }
 
   return (
@@ -26,7 +32,7 @@ export const Terminado = ({ onGameRestart, averageTime }) => {
       </div>
       <div style={{ display: 'flex', gap: '10px' }}>
         <button className='btn' onClick={handleSaveScore}>Save score</button>
-        <button onClick={() => onGameRestart()} className='btn'>Try again</button>
+        <button onClick={() => handleGameRestart()} className='btn'>Try again</button>
       </div>
     </div >
   )

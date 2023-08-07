@@ -2,7 +2,11 @@
 import target from '../assets/target.svg'
 import shot from '../assets/shot.mp3'
 import '../App.css'
-export const Diana = ({ handleDianaClick, buttonPosition, handleAverageClick, isMuted }) => {
+import { GameContext } from '../context/GameStateContext'
+import { useContext } from 'react'
+export const Diana = ({ isMuted }) => {
+
+  const { handleDianaClick, buttonPosition, handleAverageClick } = useContext(GameContext)
 
   function handleDianaSound() {
     isMuted ? new Audio(shot).mute : new Audio(shot).play()
