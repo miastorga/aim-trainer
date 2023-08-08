@@ -17,25 +17,26 @@ const router = createBrowserRouter([
   {
     path: "/",
     element: <Navbar />,
-    errorElement: <h1>error</h1>,
+    errorElement: <h2>Oops, something went wrong.</h2>,
     children: [
       {
         path: '/',
         element: <App />,
-        errorElement: <h1>error</h1>
+        errorElement: <h2>Oops, something went wrong.</h2>
       },
       {
         path: 'login',
         element: <ProtectedRoute> <Login /> </ProtectedRoute>,
-        errorElement: <h1>error</h1>,
+        errorElement: <h2>Oops, something went wrong.</h2>,
       },
       {
         path: 'signup',
         element: <ProtectedRoute><SignUp /></ProtectedRoute>,
-        errorElement: <h1>error</h1>,
+        errorElement: <h2>Oops, something went wrong.</h2>,
       }, {
         path: 'dashboard',
-        element: <TimeRecords />
+        element: <ProtectedRoute> <TimeRecords /></ProtectedRoute>,
+        errorElement: <h2>Oops, something went wrong.</h2>
       }
     ]
   },

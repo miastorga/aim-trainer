@@ -2,10 +2,15 @@
 import { Link, Outlet, useNavigate } from 'react-router-dom'
 import { UserAuth } from "../context/AuthContext"
 import '../App.css'
+import 'react-toastify/dist/ReactToastify.css'
 
 export const Navbar = () => {
+
   const { user, signOut } = UserAuth()
   const navigate = useNavigate()
+
+  console.log(user)
+
   async function handleSignOut() {
     await signOut()
     navigate('/')
@@ -15,10 +20,13 @@ export const Navbar = () => {
     <>
       <nav>
         <div style={{ display: 'flex', gap: '20px' }}>
-          <Link to={'/'} className='nav'>Aim Trainer</Link >
+          <Link to={'/'} className='nav' >Aim Trainer</Link >
           {user && <Link to={'dashboard'} className='nav'> Dashboard</Link>}
         </div>
-        <div>
+        <div style={{ display: 'flex', alignItems: 'baseline' }}>
+          <h1 style={{ fontSize: '25px' }}>
+            {user && user.email}
+          </h1>
           {
             user ? <Link to={'/'} className='sign-out' onClick={handleSignOut}>Sign Out</Link> :
               <Link to={'login'} className='sign-out'>Login</Link>

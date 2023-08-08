@@ -49,12 +49,10 @@ export const AuthContextProvider = ({ children }) => {
     const { data: authListener } = supabase.auth.onAuthStateChange(async (event, session) => {
       switch (event) {
         case 'SIGNED_IN':
-          console.log('log in')
           setUser(session?.user)
           setIsLoading(false)
           break
         case 'SIGNED_OUT':
-          console.log('sign out')
           setUser(null)
           setIsLoading(false)
           break

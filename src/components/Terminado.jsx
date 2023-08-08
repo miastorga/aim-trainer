@@ -8,6 +8,7 @@ import { insertUserScore } from '../supabase/querys'
 import { useContext } from 'react'
 import { GameContext } from '../context/GameStateContext'
 
+
 export const Terminado = () => {
   const { handleGameRestart, averageTime } = useContext(GameContext)
   const { user } = UserAuth()

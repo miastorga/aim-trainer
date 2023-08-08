@@ -20,7 +20,7 @@ function App() {
             {gameState === GAME_STATE.notStarted && <h1>Aim Trainer</h1>}
           </div>
           <div className='header'>
-            {showRemaining && <h2>Remaining: {remaining}</h2>}
+            {showRemaining && <h2 style={{ color: 'white' }}>Remaining: {remaining}</h2>}
           </div>
           <div className='diana-container' ref={dianaContainerRef}>
             {remaining > 0 ? <Diana isMuted={isMuted} /> : <Terminado />}
