@@ -2,7 +2,6 @@
 import { Link, Outlet, useNavigate } from 'react-router-dom'
 import { UserAuth } from "../context/AuthContext"
 import '../App.css'
-import 'react-toastify/dist/ReactToastify.css'
 
 export const Navbar = () => {
 
