@@ -14,18 +14,9 @@ export const Navbar = () => {
   return (
     <>
       <nav>
-        <div>
+        <div style={{ display: 'flex', gap: '20px' }}>
           <Link to={'/'} className='nav'>Aim Trainer</Link >
-        </div>
-        <div style={{
-          display: 'flex',
-          flexDirection: 'row',
-          alignItems: 'center',
-          gap: '1rem'
-        }}>
-          {
-            user ? <h1>{user.email}</h1> : null
-          }
+          {user && <Link to={'dashboard'} className='nav'> Dashboard</Link>}
         </div>
         <div>
           {
