@@ -19,9 +19,9 @@ export const TimeRecords = () => {
   }, [user])
 
   return (
-    <>
-      <div style={{ textAlign: 'center', margin: '10px 10px' }}>
-        <h1 style={{ color: 'black' }}>Activity Feed</h1>
+    <div style={{ height: '100vh', backgroundColor: '#8A2BE2' }}>
+      <div style={{ textAlign: 'center', padding: '40px 10px' }}>
+        <h1 style={{ color: 'white' }}>Dashboard</h1>
       </div>
       <table>
         <thead>
@@ -43,6 +43,6 @@ export const TimeRecords = () => {
           }
         </tbody>
       </table>
-    </>
+    </div>
   )
 }

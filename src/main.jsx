@@ -11,6 +11,7 @@ import { Login } from "./components/Login.jsx"
 import { SignUp } from "./components/Signup.jsx"
 import { ProtectedRoute } from "./components/ProtectedRoute.jsx"
 import { GameStateContextProvider } from "./context/GameStateContext.jsx"
+import { TimeRecords } from "./components/TimeRecords.jsx"
 
 const router = createBrowserRouter([
   {
@@ -32,6 +33,9 @@ const router = createBrowserRouter([
         path: 'signup',
         element: <ProtectedRoute><SignUp /></ProtectedRoute>,
         errorElement: <h1>error</h1>,
+      }, {
+        path: 'dashboard',
+        element: <TimeRecords />
       }
     ]
   },

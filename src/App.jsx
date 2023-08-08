@@ -3,7 +3,6 @@ import { Terminado } from './components/Terminado'
 import { Footer } from './components/Footer'
 import { Volumen, VolumenMuted } from './components/Icons'
 import './App.css'
-import { TimeRecords } from './components/TimeRecords'
 import { useContext } from 'react'
 import { GameContext } from './context/GameStateContext'
 
@@ -39,7 +38,6 @@ function App() {
           </div>
         </div>
       </main>
-      <TimeRecords />
     </>
   )
 }
