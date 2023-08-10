@@ -35,7 +35,7 @@ const router = createBrowserRouter([
         errorElement: <h2>Oops, something went wrong.</h2>,
       }, {
         path: 'dashboard',
-        element: <ProtectedRoute> <TimeRecords /></ProtectedRoute>,
+        element: <TimeRecords />,
         errorElement: <h2>Oops, something went wrong.</h2>
       }
     ]
