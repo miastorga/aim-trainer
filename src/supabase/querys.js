@@ -20,3 +20,11 @@ export async function insertUserScore({ average_time, user_id, date }) {
     .select()
   return data
 }
+
+export async function deleteScore(id) {
+  try {
+    await supabase.from("Score").delete().eq("id", id)
+  } catch (error) {
+    console.log("error", error)
+  }
+}
