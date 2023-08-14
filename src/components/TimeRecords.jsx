@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react"
 import { UserAuth } from "../context/AuthContext"
 import { deleteScore, getUserScore } from "../supabase/querys"
+import '../App.css'
 
 export const TimeRecords = () => {
   const { user } = UserAuth()
@@ -17,11 +18,8 @@ export const TimeRecords = () => {
   }, [user])
 
   async function handleDelete(id) {
-    console.log('1')
     await deleteScore(id)
-    console.log('2')
     setUserScore(userScore.filter(u => u.id !== id))
-    console.log('3')
   }
 
   return (
@@ -35,16 +33,17 @@ export const TimeRecords = () => {
             <th>#</th>
             <th>Score</th>
             <th>Date</th>
+            <th></th>
           </tr>
         </thead>
         <tbody>
           {
             userScore.map((score, idx) => (
-              <tr key={score.id} >
+              <tr key={score.id} style={{ margin: '40px' }}>
                 <td>{idx + 1}</td>
                 <td>{score.average_time}ms</td>
                 <td>{score.date}</td>
-                <td><button onClick={() => handleDelete(score.id)}>delete</button></td>
+                <td><button onClick={() => handleDelete(score.id)} className="btn-delete">delete</button></td>
               </tr>
             ))
           }
