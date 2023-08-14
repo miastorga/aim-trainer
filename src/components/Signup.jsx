@@ -39,6 +39,9 @@ export const SignUp = () => {
           {isSignUp && <p style={{ color: 'green', width: '400px', marginTop: '10px' }}>We&apos;ve sent a verification link to your email. Please click on the link to activate your account.</p>}
         </form>
       </div>
+      <div className='show-on-mobile'>
+        <h1>This test is intended to be taken on a desktop or laptop. (Or make your browser window larger)</h1>
+      </div>
     </div>
   )
 }

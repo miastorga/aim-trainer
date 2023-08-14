@@ -45,6 +45,9 @@ export const Login = () => {
           <Link to={'/signup'}> Sign Up</Link>
         </p>
       </div>
+      <div className='show-on-mobile'>
+        <h1>This test is intended to be taken on a desktop or laptop. (Or make your browser window larger)</h1>
+      </div>
     </div>
   )
 }

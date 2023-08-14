@@ -9,7 +9,7 @@ import { Navbar } from "./components/Navbar.jsx"
 import { AuthContextProvider } from "./context/AuthContext.jsx"
 import { Login } from "./components/Login.jsx"
 import { SignUp } from "./components/Signup.jsx"
-import { ProtectedRoute } from "./components/ProtectedRoute.jsx"
+import { AuthenticatedRoute, ProtectedRoute } from "./components/ProtectedRoute.jsx"
 import { GameStateContextProvider } from "./context/GameStateContext.jsx"
 import { TimeRecords } from "./components/TimeRecords.jsx"
 
@@ -35,7 +35,7 @@ const router = createBrowserRouter([
         errorElement: <h2>Oops, something went wrong.</h2>,
       }, {
         path: 'dashboard',
-        element: <TimeRecords />,
+        element: <AuthenticatedRoute><TimeRecords /></AuthenticatedRoute>,
         errorElement: <h2>Oops, something went wrong.</h2>
       }
     ]

@@ -334,6 +334,12 @@ tbody th {
     height: 90vh;
   }
 
+  .login {
+    visibility: hidden;
+    width: 0;
+    height: 0;
+  }
+
   .main-content {
     visibility: hidden;
     width: 0;

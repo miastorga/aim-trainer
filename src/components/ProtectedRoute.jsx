@@ -11,3 +11,12 @@ export const ProtectedRoute = ({ children }) => {
   return children
 }
 
+export const AuthenticatedRoute = ({ children }) => {
+  const { user } = UserAuth()
+
+  if (!user) {
+    return <Navigate to="/login" replace />
+  }
+
+  return children
+}
