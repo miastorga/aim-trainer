@@ -25,7 +25,7 @@ export const TimeRecords = () => {
   return (
     <div style={{ height: '100vh', backgroundColor: '#8A2BE2' }}>
       <div style={{ textAlign: 'center', padding: '40px 10px' }}>
-        <h1 style={{ color: 'white' }}>Dashboard</h1>
+        <h1 style={{ color: 'white', fontSize: '3rem', letterSpacing: '10px' }}>Dashboard</h1>
       </div>
       <table>
         <thead>
@@ -49,6 +49,7 @@ export const TimeRecords = () => {
           }
         </tbody>
       </table>
+      <br />
     </div>
   )
 }
