@@ -265,7 +265,11 @@ table {
   padding: 25px;
   text-align: center;
   width: 40%;
-  background-color: var(--lavanda);
+  background-color: white;
+  border-collapse: collapse;
+  vertical-align: middle;
+  border: 1px solid black;
+  border-radius: 5px;
 }
 
 table thead tr {
@@ -273,7 +277,54 @@ table thead tr {
   padding-bottom: 10px;
 }
 
-table tbody {}
+th,
+td {
+  padding: 10px;
+}
+
+thead th {
+  width: 25%;
+}
+
+thead {
+  background-color: var(--lavanda);
+  font-size: 0.875rem;
+  text-transform: uppercase;
+  letter-spacing: 2%;
+}
+
+tbody tr:nth-child(odd) {
+  background-color: #fff;
+}
+
+tbody tr:nth-child(even) {
+  background-color: var(--lavanda);
+}
+
+tbody th {
+  background-color: #36c;
+  color: #fff;
+  text-align: left;
+}
+
+.btn-delete {
+  padding: 10px 10px;
+  width: 100%;
+  border-radius: 5px;
+  border-style: none;
+  border: 2px solid red;
+  background-color: white;
+  color: red;
+  text-transform: uppercase;
+  cursor: pointer;
+  font-weight: bolder;
+  font-size: 15px;
+}
+
+.btn-delete:hover {
+  cursor: pointer;
+  background-color: rgb(255, 225, 225);
+}
 
 @media (max-width: 700px) {
   main {
@@ -281,6 +332,12 @@ table tbody {}
     flex-direction: row;
     align-items: center;
     height: 90vh;
+  }
+
+  .login {
+    visibility: hidden;
+    width: 0;
+    height: 0;
   }
 
   .main-content {

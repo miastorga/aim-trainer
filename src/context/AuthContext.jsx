@@ -40,10 +40,8 @@ export const AuthContextProvider = ({ children }) => {
   useEffect(() => {
     const setData = async () => {
       const { data: { session }, error } = await supabase.auth.getSession()
-      console.log(session?.user)
       if (error) throw error
       setUser(session?.user)
-      console.log(session?.user)
       setIsLoading(false)
     }
     const { data: authListener } = supabase.auth.onAuthStateChange(async (event, session) => {

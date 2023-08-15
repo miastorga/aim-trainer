@@ -8,8 +8,6 @@ export const Navbar = () => {
   const { user, signOut } = UserAuth()
   const navigate = useNavigate()
 
-  console.log(user)
-
   async function handleSignOut() {
     await signOut()
     navigate('/')
