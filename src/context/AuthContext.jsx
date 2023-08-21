@@ -61,7 +61,6 @@ export const AuthContextProvider = ({ children }) => {
           console.log('user update')
           break
         default:
-          // Lógica por defecto
           break
       }
     })

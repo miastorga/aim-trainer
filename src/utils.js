@@ -15,7 +15,7 @@ export function handleDianaMovement(dianaContainerRef, setButtonPosition) {
   setButtonPosition(newButtonPosition)
 }
 
-export function formatDate({ date }) { // 2023-08-04T01:13:58+00:00 -------> 2023-08-04T01:13:58
+export function formatDate({ date }) { // 2023-08-04T01:13:58+00:00 -------> 2023-08-19 21:57:59
   const replace = date.replace('T', ' ')
   const newDate = replace.slice(0, -6)
   return newDate
