@@ -9,6 +9,7 @@ export const TimeRecords = () => {
   const [userScore, setUserScore] = useState([])
   const [isFavorite, setIsFavorite] = useState(null)
 
+  console.log(userScore)
   useEffect(() => {
     async function getScore() {
       if (user) {
