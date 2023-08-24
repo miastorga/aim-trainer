@@ -36,3 +36,12 @@ export function getCurrentDate() { // <------- 2023-03-12 17:08:00+00
   let formattedDateTime = `${year}-${month}-${day} ${hours}:${minutes}:${seconds}+00`
   return formattedDateTime
 }
+
+export function orderByDateAndFavorite(data) {// <--- separarlas
+  return data.sort((a, b) => {
+    if (a.is_favorite && !b.is_favorite) return -1
+    if (!a.is_favorite && b.is_favorite) return 1
+
+    return new Date(b.date) - new Date(a.date)
+  })
+}

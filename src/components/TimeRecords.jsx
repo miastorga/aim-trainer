@@ -8,7 +8,7 @@ import '../App.css'
 export const TimeRecords = () => {
   const { user } = UserAuth()
   const [userScore, setUserScore] = useState([])
-  const [parent, enableAnimations] = useAutoAnimate({ duration: 300 })
+  const [parent] = useAutoAnimate({ duration: 250 })
 
 
   console.log(userScore)
@@ -54,7 +54,7 @@ export const TimeRecords = () => {
     <div style={{
       height: '100vh', backgroundColor: '#8A2BE2', overflow: 'auto', display: 'flex', flexDirection: 'column', alignItems: 'center'
     }}>
-      <div style={{ textAlign: 'center', padding: '40px 10px' }}>
+      <div style={{ textAlign: 'center', padding: '15px 10px' }}>
         <h1 style={{ color: 'white', fontSize: '3rem', letterSpacing: '10px' }}>Dashboard</h1>
       </div>
       <div className="table">

@@ -4,8 +4,8 @@ import shot from '../assets/shot.mp3'
 import '../App.css'
 import { GameContext } from '../context/GameStateContext'
 import { useContext } from 'react'
-export const Diana = ({ isMuted }) => {
 
+export const Diana = ({ isMuted }) => {
   const { handleDianaClick, buttonPosition, handleAverageClick } = useContext(GameContext)
 
   function handleDianaSound() {

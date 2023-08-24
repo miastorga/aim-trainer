@@ -294,17 +294,22 @@ nav {
   flex-direction: row;
 }
 
+.table-header {
+  font-size: 1.5rem;
+  letter-spacing: 5px;
+  font-weight: bolder;
+}
+
 .table-body {
   background-color: var(--lavanda);
 }
 
 .table-cell {
   flex: 1;
-  padding: 8px;
+  padding: 10px;
   display: flex;
   align-items: center;
   justify-content: center;
-  border: 1px solid #ddd;
 }
 
 .table-header .table-cell {
