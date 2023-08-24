@@ -260,53 +260,6 @@ nav {
   padding: 10px;
 }
 
-table {
-  margin: auto;
-  padding: 25px;
-  text-align: center;
-  width: 40%;
-  background-color: white;
-  border-collapse: collapse;
-  vertical-align: middle;
-  border: 1px solid black;
-  border-radius: 5px;
-}
-
-table thead tr {
-  font-size: 20px;
-  padding-bottom: 10px;
-}
-
-th,
-td {
-  padding: 10px;
-}
-
-thead th {
-  width: 25%;
-}
-
-thead {
-  background-color: var(--lavanda);
-  font-size: 0.875rem;
-  text-transform: uppercase;
-  letter-spacing: 2%;
-}
-
-tbody tr:nth-child(odd) {
-  background-color: #fff;
-}
-
-tbody tr:nth-child(even) {
-  background-color: var(--lavanda);
-}
-
-tbody th {
-  background-color: #36c;
-  color: #fff;
-  text-align: left;
-}
-
 .btn-delete {
   padding: 10px 10px;
   width: 100%;
@@ -324,6 +277,52 @@ tbody th {
 .btn-delete:hover {
   cursor: pointer;
   background-color: rgb(255, 225, 225);
+}
+
+.table {
+  border-collapse: collapse;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.table-header,
+.table-row {
+  display: flex;
+  width: 35rem;
+  flex-direction: row;
+}
+
+.table-header {
+  font-size: 1.5rem;
+  letter-spacing: 5px;
+  font-weight: bolder;
+}
+
+.table-body {
+  background-color: var(--lavanda);
+}
+
+.table-cell {
+  flex: 1;
+  padding: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.table-header .table-cell {
+  font-weight: bold;
+  background-color: #f2f2f2;
+}
+
+.table-row:nth-child(odd) {
+  background-color: #fff;
+}
+
+.table-row:nth-child(even) {
+  background-color: var(--lavanda);
 }
 
 @media (max-width: 700px) {

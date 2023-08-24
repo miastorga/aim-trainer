@@ -1,16 +1,5 @@
-import { formatDate } from "../utils"
+import { formatDate, orderByDateAndFavorite } from "../utils"
 import { supabase } from "./supabase.config"
-
-function orderByDateAndFavorite(data) {
-  return data.sort((a, b) => {
-    const dateComparison = new Date(b.date) - new Date(a.date)
-    if (dateComparison !== 0) {
-      return dateComparison
-    }
-
-    return b.is_favorite - a.is_favorite
-  })
-}
 
 export async function getUserScore({ userId }) {
   const { data, error } = await supabase
