@@ -3,12 +3,10 @@ import { supabase } from "./supabase.config"
 
 function orderByDateAndFavorite(data) {
   return data.sort((a, b) => {
-    const dateComparison = new Date(b.date) - new Date(a.date)
-    if (dateComparison !== 0) {
-      return dateComparison
-    }
+    if (a.is_favorite && !b.is_favorite) return -1
+    if (!a.is_favorite && b.is_favorite) return 1
 
-    return b.is_favorite - a.is_favorite
+    return new Date(b.date) - new Date(a.date)
   })
 }
 
