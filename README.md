@@ -5,6 +5,13 @@
 
 ¡Pon a prueba tus habilidades de apuntar con "Aim Trainer"! Haz clic en la diana tan rápido como puedas. Desafía tus límites y mejora tu precisión.
 
+## Tecnologías Utilizadas 💻
+
+- **Frontend:** React y React Router para la navegación de rutas.
+- **Herramientas de Desarrollo:** Vite para la creación y desarrollo del proyecto
+- **Backend:** Supabase (basado en PostgreSQL para la gestión de bases de datos)
+- **Despliegue:** Vercel
+
 ## Características 🌟
 
 1. **Modo de Juego:** Haz clic en la diana 30 veces tan rápido como puedas.
