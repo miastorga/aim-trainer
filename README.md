@@ -31,6 +31,10 @@
    - **Dashboard:** Accede a tu dashboard para ver todas tus puntuaciones. Desde aquí, puedes marcar tus tiempos preferidos como favoritos para que aparezcan al principio de la lista.
    - **¡Juega!** Ahora puedes jugar normalmente y guardar todas las puntuaciones que desees.
 
+## Usuario de prueba  🕹️
+Para aquellos que quieran probar rápidamente la funcionalidad sin registrarse:
+- **Corre electronico:** tester@aimtrainer.com
+- **Contraseña:** AimTest1234$$
 ## Seguridad 🔐
 
 Nos tomamos la seguridad de nuestros usuarios muy en serio. Por eso, todos los nuevos registros requieren una verificación por correo electrónico. Asegúrate de utilizar una contraseña segura y única.
