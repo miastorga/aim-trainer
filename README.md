@@ -37,6 +37,6 @@ Para aquellos que quieran probar rápidamente la funcionalidad sin registrarse:
 - **Contraseña:** AimTest1234$$
 ## Seguridad 🔐
 
-Nos tomamos la seguridad de nuestros usuarios muy en serio. Por eso, todos los nuevos registros requieren una verificación por correo electrónico. Asegúrate de utilizar una contraseña segura y única.
+Todos los nuevos registros requieren una verificación por correo electrónico. Asegúrate de utilizar una contraseña segura y única.
 
 ---
